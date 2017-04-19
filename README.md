@@ -1,6 +1,6 @@
-# Commanded.EventStore.Adapters.EventStore
+# EventStore adapter for Commanded
 
-**TODO: Add description**
+Use the PostgreSQL-based [EventStore](https://github.com/slashdotdash/eventstore) with [Commanded](https://travis-ci.org/slashdotdash/commanded).
 
 ## Installation
 
@@ -16,4 +16,3 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/commanded_eventstore_adapter](https://hexdocs.pm/commanded_eventstore_adapter).
-
