@@ -14,10 +14,9 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     RecordedEvent,
     SnapshotData,
   }
-  alias Commanded.EventStore.Adapters.EventStore.Subscription
 
   def start_link do
-    GenServer.start_link(__MODULE__, %{subscriptions: %{}}, name: __MODULE__)
+    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
   end
 
   @spec append_to_stream(String.t, non_neg_integer, list(EventData.t)) :: {:ok, non_neg_integer} | {:error, reason :: term}
@@ -42,17 +41,17 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     | {:error, reason :: term}
   def subscribe_to_all_streams(subscription_name, subscriber, start_from \\ :origin)
   def subscribe_to_all_streams(subscription_name, subscriber, start_from) do
-    GenServer.call(__MODULE__, {:subscribe_all, subscription_name, subscriber, start_from})
+    EventStore.subscribe_to_all_streams(subscription_name, subscriber, start_from: start_from, mapper: &from_recorded_event/1)
   end
 
   @spec ack_event(pid, RecordedEvent.t) :: any
   def ack_event(subscription, %RecordedEvent{event_number: event_number}) do
-    send(subscription, {:ack, event_number})
+    EventStore.ack(subscription, event_number)
   end
 
   @spec unsubscribe_from_all_streams(String.t) :: :ok
   def unsubscribe_from_all_streams(subscription_name) do
-    GenServer.call(__MODULE__, {:unsubscribe_all, subscription_name})
+    EventStore.unsubscribe_from_all_streams(subscription_name)
   end
 
   @spec read_snapshot(String.t) :: {:ok, SnapshotData.t} | {:error, :snapshot_not_found}
@@ -65,7 +64,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
 
   @spec record_snapshot(SnapshotData.t) :: :ok | {:error, reason :: term}
   def record_snapshot(%SnapshotData{} = snapshot) do
-    EventStore.record_snapshot(to_pg_snapshot_data(snapshot))
+    EventStore.record_snapshot(to_snapshot_data(snapshot))
   end
 
   @spec delete_snapshot(String.t) :: :ok | {:error, reason :: term}
@@ -73,37 +72,42 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     EventStore.delete_snapshot(source_uuid)
   end
 
-  def handle_call({:subscribe_all, subscription_name, subscriber, start_from}, _from, state) do
-    {:ok, pid} = Subscription.start(subscription_name, subscriber, start_from)
-    state = %{state |
-      subscriptions: Map.put(state.subscriptions, subscription_name, pid),
-    }
-
-    {:reply, Subscription.result(pid), state}
+  def to_event_data(%EventData{} = event_data) do
+    struct(EventStore.EventData, Map.from_struct(event_data))
   end
 
-  def handle_call({:unsubscribe_all, subscription_name}, _from, state) do
-    {subscription_pid, subscriptions} = Map.pop(state.subscriptions, subscription_name)
-
-    EventStore.unsubscribe_from_all_streams(subscription_name)
-    Process.exit(subscription_pid, :kill)
-
-    {:reply, :ok, %{state | subscriptions: subscriptions}}
+  @doc """
+  Map from an event store recorded event to its Commanded equivalent
+  """
+  def from_recorded_event(%EventStore.RecordedEvent{
+    event_id: event_id,
+    stream_id: stream_id,
+    stream_version: stream_version,
+    correlation_id: correlation_id,
+    causation_id: causation_id,
+    event_type: event_type,
+    data: data,
+    metadata: metadata,
+    created_at: created_at})
+  do
+    %RecordedEvent{
+      event_number: event_id,
+      stream_id: stream_id,
+      stream_version: stream_version,
+      correlation_id: correlation_id,
+      causation_id: causation_id,
+      event_type: event_type,
+      data: data,
+      metadata: metadata,
+      created_at: created_at,
+    }
   end
 
   def to_snapshot_data(%SnapshotData{} = snapshot) do
     struct(EventStore.Snapshots.SnapshotData, Map.from_struct(snapshot))
   end
 
-  def to_event_data(%EventData{} = event_data) do
-    struct(EventStore.EventData, Map.from_struct(event_data))
-  end
-
   def from_snapshot_data(%EventStore.Snapshots.SnapshotData{} = snapshot_data) do
     struct(SnapshotData, Map.from_struct(snapshot_data))
-  end
-
-  def from_recorded_event(%EventStore.RecordedEvent{}, recorded_event) do
-    struct(RecordedEvent, Map.from_struct(recorded_event))
   end
 end
