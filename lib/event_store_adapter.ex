@@ -5,8 +5,6 @@ defmodule Commanded.EventStore.Adapters.EventStore do
 
   @behaviour Commanded.EventStore
 
-  use GenServer
-
   require Logger
 
   alias Commanded.EventStore.{
@@ -14,10 +12,6 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     RecordedEvent,
     SnapshotData,
   }
-
-  def start_link do
-    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
-  end
 
   @spec append_to_stream(String.t, non_neg_integer, list(EventData.t)) :: {:ok, non_neg_integer} | {:error, reason :: term}
   def append_to_stream(stream_uuid, expected_version, events) do
