@@ -22,8 +22,8 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, path: "~/src/commanded", runtime: false},
-      {:eventstore, path: "~/src/eventstore"},
+      {:commanded, "~> 0.10", runtime: false},
+      {:eventstore, "~> 0.8"},
       {:mix_test_watch, "~> 0.2", only: :dev},
     ]
   end
