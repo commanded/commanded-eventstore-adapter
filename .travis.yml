@@ -1,0 +1,19 @@
+language: elixir
+
+elixir:
+  - 1.4.2
+
+otp_release:
+  - 19.3
+
+services:
+  - postgresql
+
+before_script:
+  - mix event_store.create
+
+sudo: required
+dist: trusty
+
+addons:
+  postgresql: "9.6"
