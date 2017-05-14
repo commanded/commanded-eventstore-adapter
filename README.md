@@ -2,6 +2,10 @@
 
 Use the PostgreSQL-based [EventStore](https://github.com/slashdotdash/eventstore) with [Commanded](https://github.com/slashdotdash/commanded).
 
+MIT License
+
+[![Build Status](https://travis-ci.org/slashdotdash/commanded-eventstore-adapter.svg?branch=master)](https://travis-ci.org/slashdotdash/commanded-eventstore-adapter)
+
 ## Getting started
 
 The package can be installed from hex as follows.

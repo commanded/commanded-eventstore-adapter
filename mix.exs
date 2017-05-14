@@ -27,4 +27,22 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       {:mix_test_watch, "~> 0.2", only: :dev},
     ]
   end
+
+  defp description do
+"""
+Command handling middleware for CQRS applications
+"""
+  end
+
+  defp package do
+    [
+      files: [
+        "lib", "mix.exs", "README*", "LICENSE*",
+      ],
+      maintainers: ["Ben Smith"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/slashdotdash/commanded-eventstore-adapter",
+               "Docs" => "https://hexdocs.pm/commanded_eventstore_adapter/"}
+    ]
+  end
 end

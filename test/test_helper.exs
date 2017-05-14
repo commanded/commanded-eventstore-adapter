@@ -1,5 +1,7 @@
 ExUnit.start()
 
+Mix.Task.run("event_store.create", ~w(--quiet))
+
 # configure this event store adapter for Commanded
 Application.put_env(:commanded, :event_store_adapter, Commanded.EventStore.Adapters.EventStore)
 
