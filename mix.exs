@@ -4,12 +4,13 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   def project do
     [
       app: :commanded_eventstore_adapter,
-       version: "0.1.0",
-       elixir: "~> 1.4",
-       build_embedded: Mix.env == :prod,
-       start_permanent: Mix.env == :prod,
-       deps: deps(),
-     ]
+      version: "0.1.0",
+      elixir: "~> 1.4",
+      description: description(),
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps(),
+    ]
   end
 
   def application do
@@ -30,7 +31,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp description do
 """
-Command handling middleware for CQRS applications
+EventStore adapter for Commanded
 """
   end
 
