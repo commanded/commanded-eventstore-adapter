@@ -26,6 +26,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     [
       {:commanded, "~> 0.10", runtime: false},
       {:eventstore, "~> 0.9"},
+      {:ex_doc, "~> 0.15", only: :dev},
       {:mix_test_watch, "~> 0.2", only: :dev},
     ]
   end
