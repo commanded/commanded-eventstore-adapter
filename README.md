@@ -1,6 +1,6 @@
 # EventStore adapter for Commanded
 
-Use the PostgreSQL-based [EventStore](https://github.com/slashdotdash/eventstore) with [Commanded](https://travis-ci.org/slashdotdash/commanded).
+Use the PostgreSQL-based [EventStore](https://github.com/slashdotdash/eventstore) with [Commanded](https://github.com/slashdotdash/commanded).
 
 ## Getting started
 
