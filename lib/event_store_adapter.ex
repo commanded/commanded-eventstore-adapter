@@ -1,8 +1,6 @@
 defmodule Commanded.EventStore.Adapters.EventStore do
   @moduledoc """
-  EventStore[1] adapter for Commanded
-
-  [1] https://github.com/slashdotdash/eventstore
+  [EventStore](https://github.com/slashdotdash/eventstore) adapter for [Commanded](https://github.com/slashdotdash/commanded).
   """
 
   @behaviour Commanded.EventStore
@@ -68,14 +66,11 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     EventStore.delete_snapshot(source_uuid)
   end
 
-  def to_event_data(%EventData{} = event_data) do
+  defp to_event_data(%EventData{} = event_data) do
     struct(EventStore.EventData, Map.from_struct(event_data))
   end
 
-  @doc """
-  Map from an event store recorded event to its Commanded equivalent
-  """
-  def from_recorded_event(%EventStore.RecordedEvent{
+  defp from_recorded_event(%EventStore.RecordedEvent{
     event_id: event_id,
     stream_uuid: stream_uuid,
     stream_version: stream_version,
@@ -99,11 +94,11 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     }
   end
 
-  def to_snapshot_data(%SnapshotData{} = snapshot) do
+  defp to_snapshot_data(%SnapshotData{} = snapshot) do
     struct(EventStore.Snapshots.SnapshotData, Map.from_struct(snapshot))
   end
 
-  def from_snapshot_data(%EventStore.Snapshots.SnapshotData{} = snapshot_data) do
+  defp from_snapshot_data(%EventStore.Snapshots.SnapshotData{} = snapshot_data) do
     struct(SnapshotData, Map.from_struct(snapshot_data))
   end
 end
