@@ -14,11 +14,11 @@ The package can be installed from hex as follows.
 
     ```elixir
     def deps do
-      [{:commanded_eventstore_adapter, "~> 0.1"}]
+      [{:commanded_eventstore_adapter, "~> 0.2"}]
     end
     ```
 
-2. Include `:eventstore` in the list of applications to start. 
+2. Include `:eventstore` in the list of applications to start.
 
     For **Elixir 1.4**, add `:eventstore` to the extra applications list in `mix.exs`:
 
@@ -29,11 +29,10 @@ The package can be installed from hex as follows.
           :logger,
           :eventstore,
         ],
-        # ...
       ]
     end
     ```
-    
+
     For **Elixir 1.3** and before, add `:eventstore` to the applications list in `mix.exs`:
 
     ```elixir
@@ -43,11 +42,10 @@ The package can be installed from hex as follows.
           :logger,
           :eventstore,
         ],
-        # ...
       ]
     end
     ```
-    
+
 3. Configure Commanded to use the event store adapter:
 
     ```elixir
