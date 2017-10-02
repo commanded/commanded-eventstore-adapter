@@ -77,7 +77,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   """
   def from_recorded_event(%EventStore.RecordedEvent{
     event_id: event_id,
-    stream_id: stream_id,
+    stream_uuid: stream_uuid,
     stream_version: stream_version,
     correlation_id: correlation_id,
     causation_id: causation_id,
@@ -88,7 +88,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   do
     %RecordedEvent{
       event_number: event_id,
-      stream_id: stream_id,
+      stream_id: stream_uuid,
       stream_version: stream_version,
       correlation_id: correlation_id,
       causation_id: causation_id,

@@ -4,7 +4,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   def project do
     [
       app: :commanded_eventstore_adapter,
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.4",
       description: description(),
       package: package(),
@@ -25,9 +25,9 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   defp deps do
     [
       {:commanded, "~> 0.10", runtime: false},
-      {:eventstore, "~> 0.9"},
-      {:ex_doc, "~> 0.15", only: :dev},
-      {:mix_test_watch, "~> 0.2", only: :dev},
+      {:eventstore, ">= 0.11.0"},
+      {:ex_doc, "~> 0.17", only: :dev},
+      {:mix_test_watch, "~> 0.5", only: :dev},
     ]
   end
 
