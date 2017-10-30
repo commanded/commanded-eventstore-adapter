@@ -33,7 +33,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     EventStore.subscribe_to_all_streams(subscription_name, subscriber, start_from: start_from, mapper: &from_recorded_event/1)
   end
 
-  @spec ack_event(pid, RecordedEvent.t) :: any
+  @spec ack_event(pid, RecordedEvent.t) :: :ok
   def ack_event(subscription, %RecordedEvent{event_number: event_number}) do
     EventStore.ack(subscription, event_number)
   end
