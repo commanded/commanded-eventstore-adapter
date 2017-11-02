@@ -1,7 +1,7 @@
 defmodule Commanded.EventStore.Adapters.EventStore do
   @moduledoc """
-  [EventStore](https://github.com/slashdotdash/eventstore) adapter for
-  [Commanded](https://github.com/slashdotdash/commanded).
+  [EventStore](https://github.com/commanded/eventstore) adapter for
+  [Commanded](https://github.com/commanded/commanded).
   """
 
   @behaviour Commanded.EventStore

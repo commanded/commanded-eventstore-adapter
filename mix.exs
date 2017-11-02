@@ -45,7 +45,7 @@ EventStore adapter for Commanded
       ],
       maintainers: ["Ben Smith"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/slashdotdash/commanded-eventstore-adapter",
+      links: %{"GitHub" => "https://github.com/commanded/commanded-eventstore-adapter",
                "Docs" => "https://hexdocs.pm/commanded_eventstore_adapter/"}
     ]
   end
