@@ -1,10 +1,12 @@
 # EventStore adapter for Commanded
 
-Use the PostgreSQL-based [EventStore](https://github.com/slashdotdash/eventstore) with [Commanded](https://github.com/slashdotdash/commanded).
+Use the PostgreSQL-based [EventStore](https://github.com/commanded/eventstore) with [Commanded](https://github.com/commanded/commanded).
+
+[Changelog](CHANGELOG.md)
 
 MIT License
 
-[![Build Status](https://travis-ci.org/slashdotdash/commanded-eventstore-adapter.svg?branch=master)](https://travis-ci.org/slashdotdash/commanded-eventstore-adapter)
+[![Build Status](https://travis-ci.org/commanded/commanded-eventstore-adapter.svg?branch=master)](https://travis-ci.org/commanded/commanded-eventstore-adapter)
 
 ## Getting started
 
@@ -14,13 +16,11 @@ The package can be installed from hex as follows.
 
     ```elixir
     def deps do
-      [{:commanded_eventstore_adapter, "~> 0.2"}]
+      [{:commanded_eventstore_adapter, "~> 0.3"}]
     end
     ```
 
-2. Include `:eventstore` in the list of applications to start.
-
-    For **Elixir 1.4**, add `:eventstore` to the extra applications list in `mix.exs`:
+2. Include `:eventstore` in the list of extra applications to start in `mix.exs`:
 
     ```elixir
     def application do
@@ -33,20 +33,7 @@ The package can be installed from hex as follows.
     end
     ```
 
-    For **Elixir 1.3** and before, add `:eventstore` to the applications list in `mix.exs`:
-
-    ```elixir
-    def application do
-      [
-        applications: [
-          :logger,
-          :eventstore,
-        ],
-      ]
-    end
-    ```
-
-3. Configure Commanded to use the event store adapter:
+3. Configure Commanded to use the `Commanded.EventStore.Adapters.EventStore` adapter:
 
     ```elixir
     config :commanded,
@@ -67,6 +54,6 @@ The package can be installed from hex as follows.
 
 5. Create the `eventstore` database and tables using the `mix` task:
 
-    ```
-    mix event_store.create
+    ```console
+    $ mix do event_store.create, event_store.init
     ```

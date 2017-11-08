@@ -1,17 +1,12 @@
 defmodule Commanded.EventStore.Adapters.EventStore do
   @moduledoc """
-  [EventStore](https://github.com/slashdotdash/eventstore) adapter for [Commanded](https://github.com/slashdotdash/commanded).
+  [EventStore](https://github.com/commanded/eventstore) adapter for
+  [Commanded](https://github.com/commanded/commanded).
   """
 
   @behaviour Commanded.EventStore
 
-  require Logger
-
-  alias Commanded.EventStore.{
-    EventData,
-    RecordedEvent,
-    SnapshotData,
-  }
+  alias Commanded.EventStore.{EventData,RecordedEvent,SnapshotData}
 
   @spec append_to_stream(String.t, non_neg_integer, list(EventData.t)) :: {:ok, non_neg_integer} | {:error, reason :: term}
   def append_to_stream(stream_uuid, expected_version, events) do
@@ -26,7 +21,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   def stream_forward(stream_uuid, start_version, read_batch_size) do
     case EventStore.stream_forward(stream_uuid, start_version, read_batch_size) do
       {:error, reason} -> {:error, reason}
-      stream ->	stream |> Stream.map(&from_recorded_event/1)
+      stream -> Stream.map(stream, &from_recorded_event/1)
     end
   end
 
@@ -38,7 +33,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     EventStore.subscribe_to_all_streams(subscription_name, subscriber, start_from: start_from, mapper: &from_recorded_event/1)
   end
 
-  @spec ack_event(pid, RecordedEvent.t) :: any
+  @spec ack_event(pid, RecordedEvent.t) :: :ok
   def ack_event(subscription, %RecordedEvent{event_number: event_number}) do
     EventStore.ack(subscription, event_number)
   end
@@ -72,6 +67,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
 
   defp from_recorded_event(%EventStore.RecordedEvent{
     event_id: event_id,
+    event_number: event_number,
     stream_uuid: stream_uuid,
     stream_version: stream_version,
     correlation_id: correlation_id,
@@ -82,7 +78,8 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     created_at: created_at})
   do
     %RecordedEvent{
-      event_number: event_id,
+      event_id: event_id,
+      event_number: event_number,
       stream_id: stream_uuid,
       stream_version: stream_version,
       correlation_id: correlation_id,
