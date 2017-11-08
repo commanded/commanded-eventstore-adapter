@@ -20,7 +20,7 @@ The package can be installed from hex as follows.
     end
     ```
 
-2. Include `:eventstore` in the list of extra applications to start.
+2. Include `:eventstore` in the list of extra applications to start in `mix.exs`:
 
     ```elixir
     def application do
@@ -33,7 +33,7 @@ The package can be installed from hex as follows.
     end
     ```
 
-3. Configure Commanded to use the EventStore adapter:
+3. Configure Commanded to use the `Commanded.EventStore.Adapters.EventStore` adapter:
 
     ```elixir
     config :commanded,
@@ -55,5 +55,5 @@ The package can be installed from hex as follows.
 5. Create the `eventstore` database and tables using the `mix` task:
 
     ```console
-    $ mix event_store.create
+    $ mix event_store.setup
     ```
