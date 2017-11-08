@@ -55,5 +55,5 @@ The package can be installed from hex as follows.
 5. Create the `eventstore` database and tables using the `mix` task:
 
     ```console
-    $ mix event_store.setup
+    $ mix do event_store.create, event_store.init
     ```

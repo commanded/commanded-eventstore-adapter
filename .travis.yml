@@ -10,7 +10,7 @@ services:
   - postgresql
 
 before_script:
-  - MIX_ENV=test mix event_store.setup
+  - MIX_ENV=test mix do event_store.create, event_store.init
 
 sudo: required
 dist: trusty
