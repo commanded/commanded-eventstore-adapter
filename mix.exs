@@ -5,7 +5,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     [
       app: :commanded_eventstore_adapter,
       version: "0.3.0",
-      elixir: "~> 1.4",
+      elixir: "~> 1.5",
       description: description(),
       package: package(),
       build_embedded: Mix.env == :prod,
