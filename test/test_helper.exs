@@ -8,10 +8,7 @@ Application.put_env(:commanded, :event_store_adapter, Commanded.EventStore.Adapt
 Application.put_env(:commanded, :reset_storage, fn ->
   Application.stop(:eventstore)
 
-  {:ok, conn} =
-    EventStore.configuration()
-    |> EventStore.Config.parse()
-    |> Postgrex.start_link()
+  {:ok, conn} = EventStore.Config.parsed() |> Postgrex.start_link()
 
   EventStore.Storage.Initializer.reset!(conn)
 
