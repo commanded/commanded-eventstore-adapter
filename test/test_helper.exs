@@ -9,10 +9,14 @@ postgrex_config = EventStore.Config.parsed() |> EventStore.Config.default_postgr
 
 {:ok, conn} = Postgrex.start_link(postgrex_config)
 
-Application.put_env(:commanded, :reset_storage, fn ->
+Application.put_env(:commanded, :stop_storage, fn ->
   Application.stop(:eventstore)
+end)
 
+Application.put_env(:commanded, :reset_storage, fn ->
   EventStore.Storage.Initializer.reset!(conn)
 
   Application.ensure_all_started(:eventstore)
+
+  :ok
 end)
