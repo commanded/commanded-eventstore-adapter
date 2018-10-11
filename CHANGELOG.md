@@ -1,5 +1,11 @@
 # Changelog
 
+## Next release
+
+### Enhancements
+
+- Support for Commanded's next release.
+
 ## v0.4.0
 
 ### Enhancements

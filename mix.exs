@@ -8,6 +8,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       app: :commanded_eventstore_adapter,
       version: @version,
       elixir: "~> 1.5",
+      elixirc_paths: elixirc_paths(Mix.env()),
       description: description(),
       docs: docs(),
       package: package(),
@@ -26,12 +27,27 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     ]
   end
 
+  defp elixirc_paths(:test),
+    do: [
+      "deps/commanded/test/event_store",
+      "deps/commanded/test/support",
+      "lib",
+      "test/support"
+    ]
+
+  defp elixirc_paths(_), do: ["lib", "test/helpers"]
+
   defp deps do
     [
-      {:commanded, ">= 0.16.0", runtime: false},
-      {:eventstore, ">= 0.14.0"},
-      {:ex_doc, "~> 0.17", only: :dev},
-      {:mix_test_watch, "~> 0.5", only: :dev}
+      # {:commanded, ">= 0.16.0", runtime: false},
+      {:commanded, github: "commanded/commanded", branch: "master", runtime: false},
+      # {:eventstore, ">= 0.14.0"},
+      {:eventstore, github: "commanded/eventstore", branch: "master"},
+
+      # Build & test tools
+      {:ex_doc, "~> 0.19", only: :dev},
+      {:mix_test_watch, "~> 0.9", only: :dev},
+      {:mox, "~> 0.4", only: :test}
     ]
   end
 
