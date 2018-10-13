@@ -7,7 +7,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     [
       app: :commanded_eventstore_adapter,
       version: @version,
-      elixir: "~> 1.5",
+      elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
       description: description(),
       docs: docs(),
@@ -35,7 +35,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       "test/support"
     ]
 
-  defp elixirc_paths(_), do: ["lib", "test/helpers"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
     [

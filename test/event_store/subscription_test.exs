@@ -17,5 +17,5 @@ defmodule Commanded.EventStore.Adapters.EventStore.SubscriptionTest do
     :ok
   end
 
-  defp event_store_wait(_default \\ nil), do: 100
+  defp event_store_wait(_default \\ nil), do: 1_000
 end
