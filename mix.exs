@@ -9,6 +9,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       version: @version,
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
+      consolidate_protocols: Mix.env() != :test,
       description: description(),
       docs: docs(),
       package: package(),
@@ -20,29 +21,28 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   def application do
     [
-      extra_applications: [
-        :logger,
-        :eventstore
-      ]
+      extra_applications: [:logger]
     ]
   end
 
-  defp elixirc_paths(:test),
-    do: [
+  defp elixirc_paths(:test) do
+    [
       "deps/commanded/test/event_store",
       "deps/commanded/test/support",
       "lib",
       "test/support"
     ]
+  end
 
   defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
     [
-      # {:commanded, ">= 0.16.0", runtime: false},
-      {:commanded, github: "commanded/commanded", branch: "master", runtime: false},
-      # {:eventstore, ">= 0.14.0"},
+      {:commanded, github: "commanded/commanded", branch: "master", runtime: Mix.env() == :test},
       {:eventstore, github: "commanded/eventstore", branch: "master"},
+
+      # Optional dependencies
+      {:jason, "~> 1.1", optional: true},
 
       # Build & test tools
       {:ex_doc, "~> 0.19", only: :dev},
