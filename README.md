@@ -6,7 +6,7 @@ Use the PostgreSQL-based [EventStore](https://github.com/commanded/eventstore) w
 
 MIT License
 
-[![Build Status](https://travis-ci.org/commanded/commanded-eventstore-adapter.svg?branch=master)](https://travis-ci.org/commanded/commanded-eventstore-adapter)
+[![Build Status](https://travis-ci.com/commanded/commanded-eventstore-adapter.svg?branch=master)](https://travis-ci.com/commanded/commanded-eventstore-adapter)
 
 ## Getting started
 
