@@ -6,6 +6,8 @@ defmodule Commanded.EventStore.Adapters.EventStore do
 
   @behaviour Commanded.EventStore
 
+  @all_stream "$all"
+
   alias Commanded.EventStore.{EventData, RecordedEvent, SnapshotData}
 
   @impl Commanded.EventStore
@@ -33,7 +35,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   @impl Commanded.EventStore
   def subscribe(stream_uuid)
 
-  def subscribe(:all), do: subscribe("$all")
+  def subscribe(:all), do: subscribe(@all_stream)
 
   def subscribe(stream_uuid) do
     EventStore.subscribe(stream_uuid, mapper: &from_recorded_event/1)
@@ -69,6 +71,14 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   @impl Commanded.EventStore
   def unsubscribe(subscription) do
     EventStore.Subscriptions.Subscription.unsubscribe(subscription)
+  end
+
+  @impl Commanded.EventStore
+  def delete_subscription(:all, subscription_name),
+    do: delete_subscription(@all_stream, subscription_name)
+
+  def delete_subscription(stream_uuid, subscription_name) do
+    EventStore.delete_subscription(stream_uuid, subscription_name)
   end
 
   @impl Commanded.EventStore
