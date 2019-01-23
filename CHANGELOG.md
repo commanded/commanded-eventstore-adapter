@@ -1,16 +1,16 @@
 # Changelog
 
-## Next release
+## 0.5.0
 
 ### Enhancements
 
-- Support for Commanded's next release.
+- Support for Commanded v0.18 and EventStore v0.16.
 
 ## v0.4.0
 
 ### Enhancements
 
-- Support for Commanded v0.16.0 and EventStore v0.14.0.
+- Support for Commanded v0.16 and EventStore v0.14.
 
 ## v0.3.0
 

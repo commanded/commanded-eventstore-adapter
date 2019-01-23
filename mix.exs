@@ -1,7 +1,7 @@
 defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   use Mix.Project
 
-  @version "0.4.0"
+  @version "0.5.0"
 
   def project do
     [
@@ -38,8 +38,8 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, github: "commanded/commanded", branch: "master", runtime: Mix.env() == :test},
-      {:eventstore, github: "commanded/eventstore", branch: "master"},
+      {:commanded, "~> 0.18", runtime: Mix.env() == :test},
+      {:eventstore, "~> 0.16"},
 
       # Optional dependencies
       {:jason, "~> 1.1", optional: true},

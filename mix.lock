@@ -1,11 +1,11 @@
 %{
-  "commanded": {:git, "https://github.com/commanded/commanded.git", "1b209aaea4afe05207da4061b4d2d2abb74dd11f", [branch: "master"]},
+  "commanded": {:hex, :commanded, "0.18.0", "8a390817aba8acfb2b6d24c14e8e068c7229fe788c0236adbe88ddbcc3f8057f", [:mix], [{:elixir_uuid, "~> 1.2", [hex: :elixir_uuid, repo: "hexpm", optional: false]}, {:jason, "~> 1.1", [hex: :jason, repo: "hexpm", optional: true]}, {:phoenix_pubsub, "~> 1.1", [hex: :phoenix_pubsub, repo: "hexpm", optional: true]}], "hexpm"},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], [], "hexpm"},
   "db_connection": {:hex, :db_connection, "2.0.3", "b4e8aa43c100e16f122ccd6798cd51c48c79fd391c39d411f42b3cd765daccb0", [:mix], [{:connection, "~> 1.0.2", [hex: :connection, repo: "hexpm", optional: false]}], "hexpm"},
   "decimal": {:hex, :decimal, "1.6.0", "bfd84d90ff966e1f5d4370bdd3943432d8f65f07d3bab48001aebd7030590dcc", [:mix], [], "hexpm"},
   "earmark": {:hex, :earmark, "1.3.1", "73812f447f7a42358d3ba79283cfa3075a7580a3a2ed457616d6517ac3738cb9", [:mix], [], "hexpm"},
   "elixir_uuid": {:hex, :elixir_uuid, "1.2.0", "ff26e938f95830b1db152cb6e594d711c10c02c6391236900ddd070a6b01271d", [:mix], [], "hexpm"},
-  "eventstore": {:git, "https://github.com/commanded/eventstore.git", "a0bbc2b42cd159cdd9dba180eb4663f8a2597994", [branch: "master"]},
+  "eventstore": {:hex, :eventstore, "0.16.0", "a67e53a87ec620d68bf14d4a72bc0150e862afabadd4b88e59cc333fa0cec73e", [:mix], [{:elixir_uuid, "~> 1.2", [hex: :elixir_uuid, repo: "hexpm", optional: false]}, {:fsm, "~> 0.3", [hex: :fsm, repo: "hexpm", optional: false]}, {:gen_stage, "~> 0.14", [hex: :gen_stage, repo: "hexpm", optional: false]}, {:jason, "~> 1.1", [hex: :jason, repo: "hexpm", optional: true]}, {:poolboy, "~> 1.5", [hex: :poolboy, repo: "hexpm", optional: true]}, {:postgrex, "~> 0.14", [hex: :postgrex, repo: "hexpm", optional: false]}], "hexpm"},
   "ex_doc": {:hex, :ex_doc, "0.19.3", "3c7b0f02851f5fc13b040e8e925051452e41248f685e40250d7e40b07b9f8c10", [:mix], [{:earmark, "~> 1.2", [hex: :earmark, repo: "hexpm", optional: false]}, {:makeup_elixir, "~> 0.10", [hex: :makeup_elixir, repo: "hexpm", optional: false]}], "hexpm"},
   "file_system": {:hex, :file_system, "0.2.6", "fd4dc3af89b9ab1dc8ccbcc214a0e60c41f34be251d9307920748a14bf41f1d3", [:mix], [], "hexpm"},
   "fsm": {:hex, :fsm, "0.3.1", "087aa9b02779a84320dc7a2d8464452b5308e29877921b2bde81cdba32a12390", [:mix], [], "hexpm"},
