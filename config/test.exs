@@ -5,6 +5,10 @@ config :logger, :console, level: :warn, format: "[$level] $message\n"
 
 config :ex_unit, capture_log: true
 
+config :commanded,
+  assert_receive_event_timeout: 1_000,
+  refute_receive_event_timeout: 1_000
+
 config :eventstore, EventStore.Storage,
   serializer: Commanded.Serialization.JsonSerializer,
   username: "postgres",
