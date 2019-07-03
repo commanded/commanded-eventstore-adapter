@@ -1,7 +1,7 @@
 defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   use Mix.Project
 
-  @version "0.5.0"
+  @version "0.6.0"
 
   def project do
     [
@@ -38,20 +38,16 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      # {:commanded, "~> 0.18", runtime: Mix.env() == :test},
-      {:commanded,
-       github: "commanded/commanded",
-       branch: "feature/event-handler-concurrency",
-       runtime: Mix.env() == :test},
-      {:eventstore, "~> 0.16"},
+      {:commanded, ">= 0.19.0", runtime: Mix.env() == :test},
+      {:eventstore, ">= 0.17.0"},
 
       # Optional dependencies
       {:jason, "~> 1.1", optional: true},
 
       # Build & test tools
-      {:ex_doc, "~> 0.19", only: :dev},
+      {:ex_doc, "~> 0.20", only: :dev},
       {:mix_test_watch, "~> 0.9", only: :dev},
-      {:mox, "~> 0.4", only: :test}
+      {:mox, "~> 0.5", only: :test}
     ]
   end
 

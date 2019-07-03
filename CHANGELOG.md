@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0
+
+### Enhancements
+
+- Support for Commanded v0.19 and EventStore v0.17.
+
 ## 0.5.0
 
 ### Enhancements

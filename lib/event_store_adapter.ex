@@ -23,9 +23,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   end
 
   @impl Commanded.EventStore
-  def stream_forward(stream_uuid, start_version \\ 0, read_batch_size \\ 1_000)
-
-  def stream_forward(stream_uuid, start_version, read_batch_size) do
+  def stream_forward(stream_uuid, start_version \\ 0, read_batch_size \\ 1_000) do
     case EventStore.stream_forward(stream_uuid, start_version, read_batch_size) do
       {:error, error} -> {:error, error}
       stream -> Stream.map(stream, &Mapper.from_recorded_event/1)
@@ -33,26 +31,29 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   end
 
   @impl Commanded.EventStore
-  def subscribe(stream_uuid)
-
   def subscribe(:all), do: subscribe(@all_stream)
 
+  @impl Commanded.EventStore
   def subscribe(stream_uuid) do
     EventStore.subscribe(stream_uuid, mapper: &Mapper.from_recorded_event/1)
   end
 
   @impl Commanded.EventStore
-  def subscribe_to(:all, subscription_name, subscriber, opts) do
-    EventStore.subscribe_to_all_streams(subscription_name, subscriber, subscription_options(opts))
+  def subscribe_to(:all, subscription_name, subscriber, start_from) do
+    EventStore.subscribe_to_all_streams(
+      subscription_name,
+      subscriber,
+      subscription_options(start_from)
+    )
   end
 
   @impl Commanded.EventStore
-  def subscribe_to(stream_uuid, subscription_name, subscriber, opts) do
+  def subscribe_to(stream_uuid, subscription_name, subscriber, start_from) do
     EventStore.subscribe_to_stream(
       stream_uuid,
       subscription_name,
       subscriber,
-      subscription_options(opts)
+      subscription_options(start_from)
     )
   end
 
@@ -73,6 +74,7 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     EventStore.delete_subscription(@all_stream, subscription_name)
   end
 
+  @impl Commanded.EventStore
   def delete_subscription(stream_uuid, subscription_name) do
     EventStore.delete_subscription(stream_uuid, subscription_name)
   end
@@ -96,12 +98,10 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     EventStore.delete_snapshot(source_uuid)
   end
 
-  defp subscription_options(opts) do
-    {concurrency_limit, opts} = Keyword.pop(opts, :concurrency, 1)
-
-    opts
-    |> Keyword.put_new(:start_from, :origin)
-    |> Keyword.put(:concurrency_limit, concurrency_limit)
-    |> Keyword.put(:mapper, &Mapper.from_recorded_event/1)
+  defp subscription_options(start_from) do
+    [
+      start_from: start_from,
+      mapper: &Mapper.from_recorded_event/1
+    ]
   end
 end
