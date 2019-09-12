@@ -38,8 +38,11 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, ">= 0.19.0", runtime: Mix.env() == :test},
-      {:eventstore, ">= 0.17.0"},
+      # {:commanded, ">= 0.19.0", runtime: Mix.env() == :test},
+      {:commanded,
+       github: "commanded/commanded", branch: "feature/multi-app", runtime: Mix.env() == :test},
+      # {:eventstore, ">= 0.17.0"},
+      {:eventstore, github: "commanded/eventstore"},
 
       # Optional dependencies
       {:jason, "~> 1.1", optional: true},
@@ -76,8 +79,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       maintainers: ["Ben Smith"],
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/commanded/commanded-eventstore-adapter",
-        "Docs" => "https://hexdocs.pm/commanded_eventstore_adapter/"
+        "GitHub" => "https://github.com/commanded/commanded-eventstore-adapter"
       }
     ]
   end

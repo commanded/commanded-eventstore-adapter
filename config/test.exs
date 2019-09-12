@@ -9,7 +9,7 @@ config :commanded,
   assert_receive_event_timeout: 1_000,
   refute_receive_event_timeout: 1_000
 
-config :eventstore, EventStore.Storage,
+config :commanded_eventstore_adapter, TestEventStore,
   serializer: Commanded.Serialization.JsonSerializer,
   username: "postgres",
   password: "postgres",
