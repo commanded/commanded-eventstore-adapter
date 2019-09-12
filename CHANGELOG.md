@@ -1,5 +1,9 @@
 # Changelog
 
+## Next release
+
+- Support multiple Commanded apps ([#4](https://github.com/commanded/commanded-eventstore-adapter/pull/4/files)).
+
 ## 0.6.0
 
 ### Enhancements

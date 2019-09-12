@@ -1,5 +1,5 @@
 defmodule Commanded.EventStore.Adapters.EventStore.SnapshotTest do
-  use Commanded.EventStore.SnapshotTestCase
+  use Commanded.EventStore.SnapshotTestCase, application: EventStoreApplication
 
   alias Commanded.EventStore.Adapters.EventStore.Storage
 

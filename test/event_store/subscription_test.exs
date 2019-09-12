@@ -1,5 +1,5 @@
 defmodule Commanded.EventStore.Adapters.EventStore.SubscriptionTest do
-  use Commanded.EventStore.SubscriptionTestCase
+  use Commanded.EventStore.SubscriptionTestCase, application: EventStoreApplication
 
   alias Commanded.EventStore.Adapters.EventStore.Storage
 

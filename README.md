@@ -8,52 +8,12 @@ MIT License
 
 [![Build Status](https://travis-ci.com/commanded/commanded-eventstore-adapter.svg?branch=master)](https://travis-ci.com/commanded/commanded-eventstore-adapter)
 
-## Getting started
+---
 
-The package can be installed from hex as follows.
+> This README and the following guides follow the `master` branch which may not be the currently published version.
+>
+> [Read the documentation for the latest published version of Commanded EventStore adapter on Hex](https://hexdocs.pm/commanded_eventstore_adapter/).
 
-1. Add `commanded_eventstore_adapter` to your list of dependencies in `mix.exs`:
+### Overview
 
-    ```elixir
-    def deps do
-      [{:commanded_eventstore_adapter, "~> 0.6"}]
-    end
-    ```
-
-2. Include `:eventstore` in the list of extra applications to start in `mix.exs`:
-
-    ```elixir
-    def application do
-      [
-        extra_applications: [
-          :logger,
-          :eventstore,
-        ],
-      ]
-    end
-    ```
-
-3. Configure Commanded to use the `Commanded.EventStore.Adapters.EventStore` adapter:
-
-    ```elixir
-    config :commanded,
-      event_store_adapter: Commanded.EventStore.Adapters.EventStore
-    ```
-
-4. Configure the `eventstore` in each environment's mix config file (e.g. `config/dev.exs`), specifying usage of the included JSON serializer:
-
-    ```elixir
-    config :eventstore, EventStore.Storage,
-      serializer: Commanded.Serialization.JsonSerializer,
-      username: "postgres",
-      password: "postgres",
-      database: "eventstore_dev",
-      hostname: "localhost",
-      pool_size: 10
-    ```
-
-5. Create the `eventstore` database and tables using the `mix` task:
-
-    ```console
-    $ mix do event_store.create, event_store.init
-    ```
+- [Getting started](guides/Getting%20Started.md)
