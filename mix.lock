@@ -1,5 +1,5 @@
 %{
-  "commanded": {:git, "https://github.com/commanded/commanded.git", "f182de796825bb800484c084a868952f4072d4b9", [branch: "feature/multi-app"]},
+  "commanded": {:git, "https://github.com/commanded/commanded.git", "f635b692b28192a1fa1b67acac3dfd8d23883dc1", []},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], [], "hexpm"},
   "db_connection": {:hex, :db_connection, "2.1.1", "a51e8a2ee54ef2ae6ec41a668c85787ed40cb8944928c191280fe34c15b76ae5", [:mix], [{:connection, "~> 1.0.2", [hex: :connection, repo: "hexpm", optional: false]}], "hexpm"},
   "decimal": {:hex, :decimal, "1.8.0", "ca462e0d885f09a1c5a342dbd7c1dcf27ea63548c65a65e67334f4b61803822e", [:mix], [], "hexpm"},

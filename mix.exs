@@ -34,21 +34,18 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     ]
   end
 
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(_env), do: ["lib"]
 
   defp deps do
     [
-      # {:commanded, ">= 0.19.0", runtime: Mix.env() == :test},
-      {:commanded,
-       github: "commanded/commanded", branch: "feature/multi-app", runtime: Mix.env() == :test},
-      # {:eventstore, ">= 0.17.0"},
+      {:commanded, github: "commanded/commanded"},
       {:eventstore, github: "commanded/eventstore"},
 
       # Optional dependencies
       {:jason, "~> 1.1", optional: true},
 
       # Build & test tools
-      {:ex_doc, "~> 0.20", only: :dev},
+      {:ex_doc, "~> 0.21", only: :dev},
       {:mix_test_watch, "~> 0.9", only: :dev},
       {:mox, "~> 0.5", only: :test}
     ]
@@ -62,9 +59,13 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp docs do
     [
-      main: "Commanded.EventStore.Adapters.EventStore",
+      main: "Getting-Started",
       canonical: "http://hexdocs.pm/commanded_eventstore_adapter",
-      source_ref: "v#{@version}"
+      source_ref: "v#{@version}",
+      extras: [
+        {"guides/Getting Started.md", title: "EventStore adapter"},
+        "CHANGELOG.md"
+      ]
     ]
   end
 

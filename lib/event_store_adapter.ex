@@ -1,7 +1,5 @@
 defmodule Commanded.EventStore.Adapters.EventStore do
-  @moduledoc """
-  EventStore adapter for Commanded.
-  """
+  @moduledoc false
 
   alias Commanded.EventStore.Adapters.EventStore.Mapper
 
