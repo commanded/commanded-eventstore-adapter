@@ -1,16 +1,16 @@
 # Changelog
 
-## Next release
+## v1.0.0-rc.0
 
 - Support multiple Commanded apps ([#4](https://github.com/commanded/commanded-eventstore-adapter/pull/4/files)).
 
-## 0.6.0
+## v0.6.0
 
 ### Enhancements
 
 - Support for Commanded v0.19 and EventStore v0.17.
 
-## 0.5.0
+## v0.5.0
 
 ### Enhancements
 
