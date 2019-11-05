@@ -10,6 +10,8 @@ The package can be installed from hex as follows.
     end
     ```
 
+    Then run `mix deps.get`
+
 2. Create an event store for your application:
 
     ```elixir
@@ -31,7 +33,7 @@ The package can be installed from hex as follows.
       end
     ```
 
-4. Configure the event store in each environment's mix config file (e.g. `config/dev.exs`), specifying usage of the included JSON serializer:
+4. Configure the event store in each environment's mix config file (e.g. `config/dev.exs`), specifying usage of Commanded's JSON serializer:
 
     ```elixir
     config :my_app, MyApp.EventStore,

@@ -1,19 +1,6 @@
 defmodule Commanded.EventStore.Adapters.EventStore.SnapshotTest do
-  use Commanded.EventStore.SnapshotTestCase, application: EventStoreApplication
+  use Commanded.EventStore.EventStoreTestCase
 
-  alias Commanded.EventStore.Adapters.EventStore.Storage
-
-  setup_all do
-    {:ok, conn} = Storage.connect()
-
-    [conn: conn]
-  end
-
-  setup %{conn: conn} do
-    on_exit(fn ->
-      Storage.reset!(conn)
-    end)
-
-    :ok
-  end
+  use Commanded.EventStore.SnapshotTestCase,
+    event_store: Commanded.EventStore.Adapters.EventStore
 end
