@@ -15,6 +15,13 @@ defmodule Commanded.EventStore.Adapters.EventStore do
 
     name = Keyword.get(config, :name, event_store)
 
+    # Rename `prefix` config to `schema`
+    config =
+      case Keyword.pop(config, :prefix) do
+        {nil, config} -> config
+        {prefix, config} -> Keyword.put(config, :schema, prefix)
+      end
+
     child_spec = [{event_store, config}]
     adapter_meta = %{event_store: event_store, name: name}
 

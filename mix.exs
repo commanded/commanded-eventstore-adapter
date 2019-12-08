@@ -38,7 +38,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, "~> 1.0"},
+      {:commanded, github: "commanded/commanded", branch: "master"},
       {:eventstore, github: "commanded/eventstore", branch: "feature/dynamic"},
 
       # Optional dependencies
