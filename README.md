@@ -17,3 +17,4 @@ MIT License
 ### Overview
 
 - [Getting started](guides/Getting%20Started.md)
+- [Dynamic event store](guides/Dynamic%20Event%20Store.md)

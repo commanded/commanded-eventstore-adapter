@@ -1,6 +1,14 @@
 # Changelog
 
+## Next release
+
+### Enhancements
+
+- Support dynamic event stores ([#6](https://github.com/commanded/commanded-eventstore-adapter/pull/6)).
+
 ## v1.0.0
+
+### Enhancements
 
 - Support multiple Commanded apps ([#4](https://github.com/commanded/commanded-eventstore-adapter/pull/4/files)).
 
