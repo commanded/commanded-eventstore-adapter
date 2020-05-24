@@ -1,6 +1,6 @@
 # Dynamic event store
 
-Event Store supports starting multiple instances, each with a unique name. This feature can be used to support multi-tenancy where each tenant's data is stored separately in its own Postgres schema.
+EventStore supports starting multiple instances, each with a unique name. This feature can be used to support multi-tenancy where each tenant's data is stored separately in its own Postgres schema.
 
 ## Example usage
 
@@ -39,4 +39,4 @@ for tenant <- [:tenant1, :tenant2, :tenant3] do
 end
 ```
 
-Each started application will use their own dynamically named event store and separate Postgres schema.
+Each started application will use its own dynamically named EventStore and separate Postgres schema.

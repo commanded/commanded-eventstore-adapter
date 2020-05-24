@@ -1,7 +1,7 @@
 defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   use Mix.Project
 
-  @version "1.0.0"
+  @version "1.1.0"
 
   def project do
     [
@@ -15,7 +15,8 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       package: package(),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -38,15 +39,21 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, github: "commanded/commanded"},
-      {:eventstore, github: "commanded/eventstore"},
+      {:commanded, "~> 1.1"},
+      {:eventstore, "~> 1.1"},
 
       # Optional dependencies
-      {:jason, "~> 1.1", optional: true},
+      {:jason, "~> 1.2", optional: true},
 
       # Build & test tools
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:mox, "~> 0.5", only: :test}
+    ]
+  end
+
+  defp aliases do
+    [
+      reset: ["event_store.drop", "event_store.create", "event_store.init"]
     ]
   end
 
@@ -58,12 +65,14 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp docs do
     [
-      main: "getting-started",
+      main: "Commanded.EventStore.Adapters.EventStore",
       canonical: "http://hexdocs.pm/commanded_eventstore_adapter",
       source_ref: "v#{@version}",
+      extra_section: "GUIDES",
       extras: [
-        {"guides/Getting Started.md", title: "EventStore adapter"},
-        "CHANGELOG.md"
+        "CHANGELOG.md",
+        "guides/Getting Started.md": [filename: "getting-started", title: "EventStore adapter"],
+        "guides/Dynamic Event Store.md": [filename: "dynamic-event-store", title: "Dynamic EventStore"],
       ]
     ]
   end

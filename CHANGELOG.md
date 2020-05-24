@@ -1,10 +1,13 @@
 # Changelog
 
-## Next release
+## v1.1.0
 
 ### Enhancements
 
 - Support dynamic event stores ([#6](https://github.com/commanded/commanded-eventstore-adapter/pull/6)).
+- Support Commanded v1.1.0 and EventStore v1.1.0
+
+---
 
 ## v1.0.0
 

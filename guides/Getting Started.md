@@ -6,7 +6,7 @@ The package can be installed from hex as follows.
 
     ```elixir
     def deps do
-      [{:commanded_eventstore_adapter, "~> 1.0.0"}]
+      [{:commanded_eventstore_adapter, "~> 1.1"}]
     end
     ```
 
@@ -45,15 +45,15 @@ The package can be installed from hex as follows.
       pool_size: 10
     ```
 
-5. Add your event store to `config/config.exs` to make it easier to use the event store mix tasks:
+5. Add your event store to `config/config.exs` to make it easier to use the EventStore mix tasks:
 
     ```elixir
     # config/config.exs
     config :my_app, event_stores: [MyApp.EventStore]
     ```
 
-6. Create the `eventstore` database and tables using the `mix` task:
+6. Create the EventStore database and tables using the `mix` task:
 
-    ```console
-    $ mix do event_store.create, event_store.init
+    ```shell
+    mix do event_store.create, event_store.init
     ```

@@ -1,5 +1,9 @@
 defmodule Commanded.EventStore.Adapters.EventStore do
-  @moduledoc false
+  @moduledoc """
+  EventStore adapter for Commanded.
+
+  Please check the [Getting Started](getting-started.html) guide to learn more.
+  """
 
   alias Commanded.EventStore.Adapters.EventStore.Mapper
 
@@ -157,14 +161,6 @@ defmodule Commanded.EventStore.Adapters.EventStore do
       raise ArgumentError,
             "missing :event_store option for event store adapter in application " <>
               inspect(application)
-    end
-
-    unless Code.ensure_compiled?(event_store) do
-      raise ArgumentError,
-            "event store " <>
-              inspect(event_store) <>
-              " was not compiled, " <>
-              "ensure it is correct and it is included as a project dependency"
     end
 
     unless implements?(event_store, EventStore) do
