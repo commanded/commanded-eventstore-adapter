@@ -6,7 +6,7 @@ The package can be installed from hex as follows.
 
     ```elixir
     def deps do
-      [{:commanded_eventstore_adapter, "~> 1.1"}]
+      [{:commanded_eventstore_adapter, "~> 1.2"}]
     end
     ```
 
