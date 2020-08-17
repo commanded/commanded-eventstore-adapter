@@ -39,7 +39,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, "~> 1.1"},
+      {:commanded, "~> 1.2"},
       {:eventstore, "~> 1.1"},
 
       # Optional dependencies
@@ -72,7 +72,10 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       extras: [
         "CHANGELOG.md",
         "guides/Getting Started.md": [filename: "getting-started", title: "EventStore adapter"],
-        "guides/Dynamic Event Store.md": [filename: "dynamic-event-store", title: "Dynamic EventStore"],
+        "guides/Dynamic Event Store.md": [
+          filename: "dynamic-event-store",
+          title: "Dynamic EventStore"
+        ]
       ]
     ]
   end

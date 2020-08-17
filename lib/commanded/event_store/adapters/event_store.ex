@@ -64,25 +64,25 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   end
 
   @impl Commanded.EventStore.Adapter
-  def subscribe_to(adapter_meta, :all, subscription_name, subscriber, start_from) do
+  def subscribe_to(adapter_meta, :all, subscription_name, subscriber, start_from, opts) do
     {event_store, name} = extract_adapter_meta(adapter_meta)
 
     event_store.subscribe_to_all_streams(
       subscription_name,
       subscriber,
-      subscription_options(name, start_from)
+      subscription_options(name, start_from, opts)
     )
   end
 
   @impl Commanded.EventStore.Adapter
-  def subscribe_to(adapter_meta, stream_uuid, subscription_name, subscriber, start_from) do
+  def subscribe_to(adapter_meta, stream_uuid, subscription_name, subscriber, start_from, opts) do
     {event_store, name} = extract_adapter_meta(adapter_meta)
 
     event_store.subscribe_to_stream(
       stream_uuid,
       subscription_name,
       subscriber,
-      subscription_options(name, start_from)
+      subscription_options(name, start_from, opts)
     )
   end
 
@@ -141,12 +141,12 @@ defmodule Commanded.EventStore.Adapters.EventStore do
     event_store.delete_snapshot(source_uuid, name: name)
   end
 
-  defp subscription_options(name, start_from) do
-    [
+  defp subscription_options(name, start_from, opts) do
+    Keyword.merge(opts,
       name: name,
       start_from: start_from,
       mapper: &Mapper.from_recorded_event/1
-    ]
+    )
   end
 
   defp extract_adapter_meta(adapter_meta) do
