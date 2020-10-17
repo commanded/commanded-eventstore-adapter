@@ -11,8 +11,19 @@ The package can be installed from hex as follows.
     ```
 
     Then run `mix deps.get`
+    
+2. Register `commanded_eventstore_adapter` as a dependency in `mix.exs`:
 
-2. Create an event store for your application:
+    ```elixir
+    def application do
+      [
+        mod: {MyApp.Application, []},
+        extra_applications: [:commanded_eventstore_adapter]
+      ]
+    end
+    ```
+
+3. Create an event store for your application:
 
     ```elixir
     defmodule MyApp.EventStore do
@@ -20,7 +31,7 @@ The package can be installed from hex as follows.
     end
     ```
 
-3. Define and configure your Commanded application to use the `Commanded.EventStore.Adapters.EventStore` adapter and your own event store module:
+4. Define and configure your Commanded application to use the `Commanded.EventStore.Adapters.EventStore` adapter and your own event store module:
 
     ```elixir
     defmodule MyApp.Application do
@@ -33,7 +44,7 @@ The package can be installed from hex as follows.
       end
     ```
 
-4. Configure the event store in each environment's mix config file (e.g. `config/dev.exs`), specifying usage of Commanded's JSON serializer:
+5. Configure the event store in each environment's mix config file (e.g. `config/dev.exs`), specifying usage of Commanded's JSON serializer:
 
     ```elixir
     config :my_app, MyApp.EventStore,
@@ -45,14 +56,14 @@ The package can be installed from hex as follows.
       pool_size: 10
     ```
 
-5. Add your event store to `config/config.exs` to make it easier to use the EventStore mix tasks:
+6. Add your event store to `config/config.exs` to make it easier to use the EventStore mix tasks:
 
     ```elixir
     # config/config.exs
     config :my_app, event_stores: [MyApp.EventStore]
     ```
 
-6. Create the EventStore database and tables using the `mix` task:
+7. Create the EventStore database and tables using the `mix` task:
 
     ```shell
     mix do event_store.create, event_store.init
