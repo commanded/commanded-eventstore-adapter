@@ -6,8 +6,6 @@ Use the PostgreSQL-based [EventStore](https://github.com/commanded/eventstore) w
 
 MIT License
 
-[![Build Status](https://travis-ci.com/commanded/commanded-eventstore-adapter.svg?branch=master)](https://travis-ci.com/commanded/commanded-eventstore-adapter)
-
 ---
 
 > This README and the following guides follow the `master` branch which may not be the currently published version.
