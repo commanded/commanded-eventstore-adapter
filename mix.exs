@@ -7,7 +7,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     [
       app: :commanded_eventstore_adapter,
       version: @version,
-      elixir: "~> 1.6",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       consolidate_protocols: Mix.env() != :test,
       description: description(),
@@ -39,21 +39,22 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, "~> 1.2"},
-      {:eventstore, "~> 1.1"},
+      {:commanded, "~> 1.4.0-rc.0"},
+      {:eventstore, "~> 1.3"},
 
       # Optional dependencies
       {:jason, "~> 1.2", optional: true},
 
       # Build & test tools
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:mox, "~> 0.5", only: :test}
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 
   defp aliases do
     [
-      reset: ["event_store.drop", "event_store.create", "event_store.init"]
+      reset: ["event_store.drop", "setup"],
+      setup: ["event_store.create", "event_store.init"]
     ]
   end
 

@@ -5,16 +5,18 @@ defmodule Commanded.EventStore.EventStoreTestCase do
   alias Commanded.EventStore.Adapters.EventStore.Storage
 
   setup_all do
-    {:ok, conn} = Storage.connect()
+    config = Storage.config()
 
-    [conn: conn]
+    {:ok, conn} = Storage.connect(config)
+
+    [config: config, conn: conn]
   end
 
-  setup %{conn: conn} do
+  setup %{config: config, conn: conn} do
     {:ok, event_store_meta} = start_event_store()
 
     on_exit(fn ->
-      Storage.reset!(conn)
+      Storage.reset!(conn, config)
     end)
 
     [event_store_meta: event_store_meta]
