@@ -142,11 +142,21 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   end
 
   defp subscription_options(name, start_from, opts) do
-    Keyword.merge(opts,
+    opts
+    |> Keyword.merge(
       name: name,
       start_from: start_from,
       mapper: &Mapper.from_recorded_event/1
     )
+    |> Keyword.update(:partition_by, nil, fn
+      nil ->
+        nil
+
+      partition_by when is_function(partition_by, 1) ->
+        fn %EventStore.RecordedEvent{} = event ->
+          Mapper.from_recorded_event(event) |> partition_by.()
+        end
+    end)
   end
 
   defp extract_adapter_meta(adapter_meta) do

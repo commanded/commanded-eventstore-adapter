@@ -4,18 +4,16 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     name: Build and test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        otp: ['22.3']
-        elixir: ['1.10.4']
+        otp: ['23.3', '24.3']
+        elixir: ['1.13.4']
 
     services:
       postgres:
         image: postgres:12
-        ports: ['5432:5432']
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -24,21 +22,23 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports: ['5432:5432']
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Set up Elixir
-      uses: actions/setup-elixir@v1
+      id: beam
+      uses: erlef/setup-beam@v1
       with:
-        elixir-version: ${{matrix.elixir}}
-        otp-version: ${{matrix.otp}}
+        elixir-version: ${{ matrix.elixir }}
+        otp-version: ${{ matrix.otp }}
 
     - name: Restore dependencies cache
       uses: actions/cache@v2
       with:
         path: deps
-        key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hashFiles('**/mix.lock') }}
+        key: ${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
 
     - name: Install dependencies
@@ -48,7 +48,9 @@ jobs:
       run: mix format --check-formatted
 
     - name: Setup EventStore test database
-      run: MIX_ENV=test mix do event_store.create, event_store.init
+      env:
+        MIX_ENV: test
+      run: mix setup
 
     - name: Run tests
       run: mix test
