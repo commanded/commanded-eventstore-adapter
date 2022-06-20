@@ -1,7 +1,7 @@
 defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   use Mix.Project
 
-  @version "1.2.0"
+  @version "1.4.0-rc.0"
 
   def project do
     [
