@@ -36,6 +36,8 @@ The package can be installed from hex as follows.
 4. Configure the event store in each environment's mix config file (e.g. `config/dev.exs`), specifying usage of Commanded's JSON serializer:
 
     ```elixir
+    import Config
+    
     config :my_app, MyApp.EventStore,
       serializer: Commanded.Serialization.JsonSerializer,
       username: "postgres",
@@ -49,7 +51,11 @@ The package can be installed from hex as follows.
 
     ```elixir
     # config/config.exs
+    import Config
+
     config :my_app, event_stores: [MyApp.EventStore]
+
+    import_config "#{config_env()}.exs"
     ```
 
 6. Create the EventStore database and tables using the `mix` task:
