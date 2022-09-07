@@ -39,11 +39,11 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      {:commanded, "~> 1.4.0-rc.0"},
+      {:commanded, "~> 1.4"},
       {:eventstore, "~> 1.3"},
 
       # Optional dependencies
-      {:jason, "~> 1.2", optional: true},
+      {:jason, "~> 1.3", optional: true},
 
       # Build & test tools
       {:ex_doc, ">= 0.0.0", only: :dev},
