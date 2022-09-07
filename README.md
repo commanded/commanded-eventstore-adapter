@@ -1,6 +1,6 @@
 # EventStore adapter for Commanded
 
-Use the PostgreSQL-based [EventStore](https://github.com/commanded/eventstore) with [Commanded](https://github.com/commanded/commanded).
+Use the Postgres-based [EventStore](https://github.com/commanded/eventstore) with [Commanded](https://github.com/commanded/commanded).
 
 [Changelog](CHANGELOG.md)
 

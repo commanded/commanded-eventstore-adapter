@@ -6,7 +6,7 @@ The package can be installed from hex as follows.
 
     ```elixir
     def deps do
-      [{:commanded_eventstore_adapter, "~> 1.2"}]
+      [{:commanded_eventstore_adapter, "~> 1.4"}]
     end
     ```
 
@@ -37,7 +37,7 @@ The package can be installed from hex as follows.
 
     ```elixir
     import Config
-    
+
     config :my_app, MyApp.EventStore,
       serializer: Commanded.Serialization.JsonSerializer,
       username: "postgres",

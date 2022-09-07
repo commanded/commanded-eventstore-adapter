@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.4.0-rc.0
+## v1.4.0
 
 - Support [Commanded v1.4.0](https://github.com/commanded/commanded/blob/master/CHANGELOG.md#v140) with subscription concurrency ([#10](https://github.com/commanded/commanded-eventstore-adapter/pull/10)).
 
