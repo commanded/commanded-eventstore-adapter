@@ -33,12 +33,13 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   end
 
   @impl Commanded.EventStore.Adapter
-  def append_to_stream(adapter_meta, stream_uuid, expected_version, events) do
+  def append_to_stream(adapter_meta, stream_uuid, expected_version, events, opts \\ []) do
     {event_store, name} = extract_adapter_meta(adapter_meta)
 
     events = Enum.map(events, &Mapper.to_event_data/1)
 
-    event_store.append_to_stream(stream_uuid, expected_version, events, name: name)
+    opts = Keyword.put(opts, :name, name)
+    event_store.append_to_stream(stream_uuid, expected_version, events, opts)
   end
 
   @impl Commanded.EventStore.Adapter
