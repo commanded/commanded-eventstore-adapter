@@ -7,7 +7,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
     [
       app: :commanded_eventstore_adapter,
       version: @version,
-      elixir: "~> 1.9",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       consolidate_protocols: Mix.env() != :test,
       description: description(),
