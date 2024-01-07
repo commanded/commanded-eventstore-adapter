@@ -54,7 +54,8 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   defp aliases do
     [
       reset: ["event_store.drop", "setup"],
-      setup: ["event_store.create", "event_store.init"]
+      setup: ["event_store.create", "event_store.init"],
+      test: ["reset", "test"]
     ]
   end
 
