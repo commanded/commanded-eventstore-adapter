@@ -1,5 +1,9 @@
 # Changelog
 
+## Next release
+
+- Pass `opts` to `append_to_stream` function ([#14](https://github.com/commanded/commanded-eventstore-adapter/pull/14)).
+
 ## v1.4.0
 
 - Support [Commanded v1.4.0](https://github.com/commanded/commanded/blob/master/CHANGELOG.md#v140) with subscription concurrency ([#10](https://github.com/commanded/commanded-eventstore-adapter/pull/10)).
