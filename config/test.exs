@@ -15,7 +15,9 @@ config :commanded_eventstore_adapter, TestEventStore,
   pool_size: 5,
   pool_overflow: 0
 
-config :ex_unit, capture_log: true
+config :ex_unit,
+  assert_receive_timeout: 1_000,
+  capture_log: [level: :warning]
 
-# Print only warnings and errors during test
-config :logger, :console, level: :warn, format: "[$level] $message\n"
+# Print only warning and above log messages during tests
+config :logger, :console, level: :warning, format: "[$level] $message\n"
