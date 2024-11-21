@@ -24,7 +24,7 @@ defmodule MyApp.Application do
     config = put_in(config, [:event_store, :name], Module.concat([name, EventStore])
 
     # Set event store prefix (Postgres schema)
-    config = put_in(config, [:event_store, :prefix], Atom.to_string(tenant))
+    config = put_in(config, [:event_store, :schema], Atom.to_string(tenant))
 
     {:ok, config}
   end
