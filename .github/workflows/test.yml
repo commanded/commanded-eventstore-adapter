@@ -12,7 +12,6 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
         include:
           - elixir: 1.20.x
