@@ -20,10 +20,6 @@ jobs:
             otp: 26
           - elixir: 1.15.x
             otp: 26
-          - elixir: 1.14.x
-            otp: 26
-          - elixir: 1.13.x
-            otp: 25
 
     services:
       postgres:
