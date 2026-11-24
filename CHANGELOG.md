@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.4.3
+
+- Support Commanded v1.4.12 and EventStore v1.4.12
+- Require Elixir 1.15 or later
+
 ## v1.4.2
 
 - Support Commanded v1.4.6 and EventStore v1.4.6
