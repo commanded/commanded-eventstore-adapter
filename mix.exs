@@ -47,12 +47,24 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
       # Build & test tools
       {:ex_doc, ">= 0.0.0", only: :dev},
+      {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false},
       {:mox, "~> 1.1", only: :test}
     ]
   end
 
+  def cli do
+    [preferred_envs: [precommit: :test]]
+  end
+
   defp aliases do
     [
+      precommit: [
+        "compile --warnings-as-errors",
+        "deps.unlock --unused",
+        "format --check-formatted",
+        "deps.audit",
+        "test"
+      ],
       reset: ["event_store.drop", "setup"],
       setup: ["event_store.create", "event_store.init"]
     ]
